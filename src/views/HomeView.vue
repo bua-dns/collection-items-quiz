@@ -70,9 +70,23 @@ function resetQuiz() {
   }
 }
 
+function selectOption(option) {
+  if (answerIsCorrect.value || selectedAnswers.value.has(option)) return
 
+  selectedAnswers.value.add(option)
 
-// ✅ Reset full quiz
+  if (option === question.value.solution) {
+    answerIsCorrect.value = true
+    totalCorrect.value++
+    totalAttempts.value++
+  } else {
+    if (selectedAnswers.value.size === 1) {
+      totalAttempts.value++
+    }
+  }
+}
+
+// ✅ Bonus: Reset full quiz
 function resetAll() {
   askedQuestions.value.clear()
   totalAttempts.value = 0
@@ -82,6 +96,8 @@ function resetAll() {
   question.value = getNewQuestion()
 }
 
+// ✅ Initialize first question
+// resetQuiz()
 </script>
 
 <template>
@@ -143,6 +159,9 @@ function resetAll() {
         </button>
       </div>
 
+      <!-- <div class="quiz" v-else>
+        <p>✅ Du hast alle möglichen Fragen durchgespielt!</p>
+      </div> -->
     </main>
 
     <aside v-if="false">
