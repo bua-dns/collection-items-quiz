@@ -1,116 +1,109 @@
 <script setup>
 import { ref, computed } from 'vue'
-import data from '@/assets/data/nouns-declension-cz.json'
 import questions from '@/assets/data/questions.json'
 
-
 // ✅ State
-const question = ref('question')
+const question = ref(null)
 const selectedAnswers = ref(new Set())
 const answerIsCorrect = ref(false)
 const askedQuestions = ref(new Set())
+const questionAlreadyCounted = ref(false)
 
 const totalAttempts = ref(0)
 const totalCorrect = ref(0)
-
-const totalWrong = computed(() => totalAttempts.value - totalCorrect.value)
-const successRate = computed(() => {
-  if (totalAttempts.value === 0) return 0
-  return Math.round((totalCorrect.value / totalAttempts.value) * 100)
-})
+const totalWrong = ref(0)
+const successRate = computed(() =>
+  totalAttempts.value === 0 ? 0 : Math.round((totalCorrect.value / totalAttempts.value) * 100)
+)
 
 // ✅ Option generation
-function generateOption(solution, pool) {
-  let options = new Set()
-  options.add(solution)
+function generateOptions(solution, pool) {
+  const options = new Set([solution])
   while (options.size < 3) {
-    const randomIndex = Math.floor(Math.random() * pool.length)
-    options.add(pool[randomIndex])
+    const random = pool[Math.floor(Math.random() * pool.length)]
+    options.add(random)
   }
   return Array.from(options).sort(() => Math.random() - 0.5)
 }
 
 // ✅ Question generation
 function getNewQuestion() {
-  const randomIndex = Math.floor(Math.random() * Object.keys(questions).length)
-  const chosenObject = Object.values(questions)[randomIndex]
-  question.value = chosenObject
-  question.value.selectedOptions = generateOption(chosenObject.solution, chosenObject.options)
-  delete question.value.options
+  const allEntries = Object.entries(questions)
+    .filter(([key]) => !askedQuestions.value.has(key))
+
+  if (allEntries.length === 0) return null
+
+  const [key, picked] = allEntries[Math.floor(Math.random() * allEntries.length)]
+  picked.selectedOptions = generateOptions(picked.solution, picked.options)
+  delete picked.options
+  picked._key = key
+  return picked
 }
-getNewQuestion()
 
 function nextQuestion() {
-  if (question.value) {
-    askedQuestions.value.add(question.value.id)
+  if (question.value?._key) {
+    askedQuestions.value.add(question.value._key)
   }
 
-  // Check if all questions have been asked
-  if (askedQuestions.value.size >= Object.keys(questions).length) {
+  const next = getNewQuestion()
+  if (!next) {
     question.value = null
     return
   }
-  getNewQuestion()
+
+  question.value = next
   selectedAnswers.value.clear()
   answerIsCorrect.value = false
-  totalAttempts.value++
-  totalCorrect.value = Math.min(totalCorrect.value, totalAttempts.value) // Ensure totalCorrect does not exceed totalAttempts
-
+  questionAlreadyCounted.value = false
 }
 
-// ✅ Quiz control
-function resetQuiz() {
-  const next = getNewQuestion()
-  if (next) {
-    question.value = next
-    selectedAnswers.value.clear()
-    answerIsCorrect.value = false
-  } else {
-    question.value = null
-  }
-}
-
+// ✅ Option selection
 function selectOption(option) {
-  if (answerIsCorrect.value || selectedAnswers.value.has(option)) return
+  if (selectedAnswers.value.has(option)) return
 
   selectedAnswers.value.add(option)
 
   if (option === question.value.solution) {
-    answerIsCorrect.value = true
-    totalCorrect.value++
-    totalAttempts.value++
-  } else {
-    if (selectedAnswers.value.size === 1) {
+    if (!questionAlreadyCounted.value) {
+      totalCorrect.value++
       totalAttempts.value++
+      questionAlreadyCounted.value = true
+    }
+    answerIsCorrect.value = true
+  } else {
+    if (!questionAlreadyCounted.value) {
+      totalWrong.value++
+      totalAttempts.value++
+      questionAlreadyCounted.value = true
     }
   }
 }
 
-// ✅ Bonus: Reset full quiz
+// ✅ Full reset
 function resetAll() {
   askedQuestions.value.clear()
   totalAttempts.value = 0
   totalCorrect.value = 0
+  totalWrong.value = 0
   selectedAnswers.value.clear()
   answerIsCorrect.value = false
+  questionAlreadyCounted.value = false
   question.value = getNewQuestion()
 }
 
-// ✅ Initialize first question
-// resetQuiz()
+// ✅ Init
+question.value = getNewQuestion()
 </script>
 
 <template>
   <div class="content-container">
     <main>
       <h1>Quiz - Objekte aus den Berliner Universitätssammlungen</h1>
-      <div class="quiz">
 
-        <img :src="`/collection-items-quiz/images/${question.image}`" alt="Sammlungsobekt" />
-        <button v-if="true || answerIsCorrect" class="next-button" @click="nextQuestion()">
-            Nächstes Objekt
-        </button>
+      <div class="quiz" v-if="question">
+        <img :src="`/collection-items-quiz/images/${question.image}`" alt="Sammlungsobjekt" />
         <h2>Was ist hier zu sehen?</h2>
+
         <div class="options">
           <button
             v-for="(opt, index) in question.selectedOptions"
@@ -125,46 +118,19 @@ function resetAll() {
             {{ opt }}
           </button>
         </div>
-      </div>
-      <pre v-if="false">
-        {{ question }}
-      </pre>
-      <div class="quiz" v-if=" false && question">
-        <p>
-          <strong>{{ question.baseForm }}</strong> im
-          <strong>{{ caseLabels[question.caseToAsk] }}</strong>?
-        </p>
 
-        <div class="options">
-          <button
-            v-for="(opt, index) in question.options"
-            :key="index"
-            @click="selectOption(opt)"
-            :class="{
-              wrong: selectedAnswers.has(opt) && opt !== question.solution,
-              correct: answerIsCorrect && opt === question.solution
-            }"
-            :disabled="answerIsCorrect || selectedAnswers.has(opt)"
-          >
-            {{ opt }}
-          </button>
-        </div>
-
-        <p v-if="answerIsCorrect" class="feedback correct">
-          ✔️ Richtig! Gut gemacht.
-        </p>
-
-        <button v-if="answerIsCorrect" class="next-button" @click="resetQuiz">
-          Nächstes Substantiv
+        <button v-if="answerIsCorrect" class="next-button" @click="nextQuestion">
+          Nächstes Objekt
         </button>
       </div>
 
-      <!-- <div class="quiz" v-else>
-        <p>✅ Du hast alle möglichen Fragen durchgespielt!</p>
-      </div> -->
+      <div v-else class="quiz">
+        <p>✅ Du hast alle Fragen durchgespielt!</p>
+        <button class="reset-button" @click="resetAll">Quiz zurücksetzen</button>
+      </div>
     </main>
 
-    <aside v-if="false">
+    <aside>
       <h2>Statistik</h2>
       <p><strong>{{ totalAttempts }}</strong> Aufgaben</p>
       <p><strong>{{ totalCorrect }}</strong> richtig</p>
@@ -180,25 +146,25 @@ function resetAll() {
 <style scoped lang="scss">
 .content-container {
   display: flex;
-  background-color: #fff;
-  min-height: 90vh;
   flex-direction: column;
-  padding: 1rem;
   gap: 2rem;
+  padding: 1rem;
+  min-height: 90vh;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, .4);
 
   @media (min-width: 768px) {
     flex-direction: row;
-    align-items: flex-start;
     padding: 2rem;
   }
 }
 
 main {
   flex: 2;
-  justify-content: center;
   text-align: center;
+
   h1 {
-    text-align: center;
     font-size: 1.125rem;
     margin-bottom: 1.5rem;
 
@@ -206,30 +172,27 @@ main {
       font-size: 2rem;
     }
   }
+
   img {
-    max-width: 24rem;
+    max-width: 28.8rem; // 20% larger than 24rem
     height: auto;
     margin-bottom: 1.5rem;
     border-radius: 0.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
-  .quiz {
 
+  .quiz {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 1rem;
+
     h2 {
-      margin-top: 1.5rem;
+      margin: 1.5rem 0 1rem;
       font-size: 1.125rem;
-      margin-bottom: 1rem;
 
       @media (min-width: 768px) {
         font-size: 1.5rem;
       }
-    }
-    @media (min-width: 768px) {
-      font-size: 1.25rem;
     }
   }
 
@@ -240,13 +203,13 @@ main {
     margin-top: 1.25rem;
 
     button {
-      padding: 0.5rem 1rem;
-      font-size: 0.9rem;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8rem;
       border: none;
       border-radius: 0.5rem;
       background-color: #eee;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s;
 
       &:hover {
         background-color: #ddd;
@@ -263,23 +226,14 @@ main {
       }
 
       &:disabled {
-        cursor: default;
         opacity: 0.9;
+        cursor: default;
       }
 
       @media (min-width: 768px) {
-        padding: 0.75rem 1.25rem;
-        font-size: 1rem;
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
       }
-    }
-  }
-
-  .feedback {
-    margin-top: 1.25rem;
-    font-weight: bold;
-
-    &.correct {
-      color: #4caf50;
     }
   }
 
@@ -300,19 +254,17 @@ main {
 }
 
 aside {
-  flex: 1;
-  border-top: 1px solid #ddd;
+  flex: 0.5; // reduced from 1 to 0.5
   padding-top: 1rem;
-  font-size: 0.95rem;
+  border-top: 1px solid #ddd;
   color: #444;
 
   @media (min-width: 768px) {
     border-top: none;
     border-left: 1px solid #ddd;
-    padding-top: 0;
     padding-left: 2rem;
+    padding-top: 0;
   }
-
 
   h2 {
     font-size: 1.1rem;
@@ -323,14 +275,9 @@ aside {
     }
   }
 
-  p {
-    margin: 0.5rem 0;
-  }
-
   .reset-button {
     margin-top: 1rem;
     padding: 0.5rem 1rem;
-    font-size: 0.9rem;
     background-color: #9e9e9e;
     color: white;
     border: none;
