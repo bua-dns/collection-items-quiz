@@ -1,27 +1,11 @@
 <script setup>
 import { ref, computed } from 'vue'
 import data from '@/assets/data/nouns-declension-cz.json'
+import questions from '@/assets/data/questions.json'
 
-// ✅ Case labels (corrected)
-const caseLabels = {
-  NOMsg: 'Nominativ Singular',
-  NOMpl: 'Nominativ Plural',
-  GENsg: 'Genitiv Singular',
-  GENpl: 'Genitiv Plural',
-  DATsg: 'Dativ Singular',
-  DATpl: 'Dativ Plural',
-  AKKsg: 'Akkusativ Singular',
-  AKKpl: 'Akkusativ Plural',
-  LOKsg: 'Lokativ Singular',
-  LOKpl: 'Lokativ Plural',
-  INSsg: 'Instrumental Singular',
-  INSpl: 'Instrumental Plural',
-  VOKsg: 'Vokativ Singular',
-  VOKpl: 'Vokativ Plural',
-}
 
 // ✅ State
-const question = ref(null)
+const question = ref('question')
 const selectedAnswers = ref(new Set())
 const answerIsCorrect = ref(false)
 const askedQuestions = ref(new Set())
@@ -48,30 +32,30 @@ function generateOption(solution, pool) {
 
 // ✅ Question generation
 function getNewQuestion() {
-  const maxTries = 1000
-  let tries = 0
+  const randomIndex = Math.floor(Math.random() * Object.keys(questions).length)
+  const chosenObject = Object.values(questions)[randomIndex]
+  question.value = chosenObject
+  question.value.selectedOptions = generateOption(chosenObject.solution, chosenObject.options)
+  delete question.value.options
+}
+getNewQuestion()
 
-  while (tries < maxTries) {
-    tries++
-    const randomNoun = data[Math.floor(Math.random() * data.length)]
-    const baseForm = randomNoun.NOMsg
-    const declensions = { ...randomNoun }
-    delete declensions.NOMsg
-
-    const keys = Object.keys(declensions)
-    const caseToAsk = keys[Math.floor(Math.random() * keys.length)]
-
-    const key = `${baseForm}|${caseToAsk}`
-    if (!askedQuestions.value.has(key)) {
-      askedQuestions.value.add(key)
-      const solution = declensions[caseToAsk]
-      const options = generateOption(solution, Object.values(declensions))
-
-      return { baseForm, caseToAsk, solution, options }
-    }
+function nextQuestion() {
+  if (question.value) {
+    askedQuestions.value.add(question.value.id)
   }
 
-  return null // All exhausted
+  // Check if all questions have been asked
+  if (askedQuestions.value.size >= Object.keys(questions).length) {
+    question.value = null
+    return
+  }
+  getNewQuestion()
+  selectedAnswers.value.clear()
+  answerIsCorrect.value = false
+  totalAttempts.value++
+  totalCorrect.value = Math.min(totalCorrect.value, totalAttempts.value) // Ensure totalCorrect does not exceed totalAttempts
+
 }
 
 // ✅ Quiz control
@@ -86,23 +70,9 @@ function resetQuiz() {
   }
 }
 
-function selectOption(option) {
-  if (answerIsCorrect.value || selectedAnswers.value.has(option)) return
 
-  selectedAnswers.value.add(option)
 
-  if (option === question.value.solution) {
-    answerIsCorrect.value = true
-    totalCorrect.value++
-    totalAttempts.value++
-  } else {
-    if (selectedAnswers.value.size === 1) {
-      totalAttempts.value++
-    }
-  }
-}
-
-// ✅ Bonus: Reset full quiz
+// ✅ Reset full quiz
 function resetAll() {
   askedQuestions.value.clear()
   totalAttempts.value = 0
@@ -112,16 +82,38 @@ function resetAll() {
   question.value = getNewQuestion()
 }
 
-// ✅ Initialize first question
-resetQuiz()
 </script>
 
 <template>
   <div class="content-container">
     <main>
       <h1>Quiz - Objekte aus den Berliner Universitätssammlungen</h1>
+      <div class="quiz">
 
-      <div class="quiz" v-if="question">
+        <img :src="`/collection-items-quiz/images/${question.image}`" alt="Sammlungsobekt" />
+        <button v-if="true || answerIsCorrect" class="next-button" @click="nextQuestion()">
+            Nächstes Objekt
+        </button>
+        <h2>Was ist hier zu sehen?</h2>
+        <div class="options">
+          <button
+            v-for="(opt, index) in question.selectedOptions"
+            :key="index"
+            @click="selectOption(opt)"
+            :class="{
+              wrong: selectedAnswers.has(opt) && opt !== question.solution,
+              correct: answerIsCorrect && opt === question.solution
+            }"
+            :disabled="answerIsCorrect || selectedAnswers.has(opt)"
+          >
+            {{ opt }}
+          </button>
+        </div>
+      </div>
+      <pre v-if="false">
+        {{ question }}
+      </pre>
+      <div class="quiz" v-if=" false && question">
         <p>
           <strong>{{ question.baseForm }}</strong> im
           <strong>{{ caseLabels[question.caseToAsk] }}</strong>?
@@ -151,12 +143,9 @@ resetQuiz()
         </button>
       </div>
 
-      <div class="quiz" v-else>
-        <p>✅ Du hast alle möglichen Fragen durchgespielt!</p>
-      </div>
     </main>
 
-    <aside>
+    <aside v-if="false">
       <h2>Statistik</h2>
       <p><strong>{{ totalAttempts }}</strong> Aufgaben</p>
       <p><strong>{{ totalCorrect }}</strong> richtig</p>
@@ -198,12 +187,28 @@ main {
       font-size: 2rem;
     }
   }
-
+  img {
+    max-width: 24rem;
+    height: auto;
+    margin-bottom: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
   .quiz {
+
     display: flex;
     flex-direction: column;
     align-items: center;
     font-size: 1rem;
+    h2 {
+      margin-top: 1.5rem;
+      font-size: 1.125rem;
+      margin-bottom: 1rem;
+
+      @media (min-width: 768px) {
+        font-size: 1.5rem;
+      }
+    }
     @media (min-width: 768px) {
       font-size: 1.25rem;
     }
