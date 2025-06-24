@@ -126,7 +126,9 @@ question.value = getNewQuestion()
 
       <div v-else class="quiz">
         <p>✅ Du hast alle Fragen durchgespielt!</p>
-        <button class="reset-button" @click="resetAll">Quiz zurücksetzen</button>
+        <button class="reset-button" @click="resetAll()">
+          Quiz zurücksetzen
+        </button>
       </div>
     </main>
 
@@ -136,9 +138,17 @@ question.value = getNewQuestion()
       <p><strong>{{ totalCorrect }}</strong> richtig</p>
       <p><strong>{{ totalWrong }}</strong> falsch</p>
       <p><strong>{{ successRate }}%</strong> korrekt</p>
-      <button class="reset-button" @click="resetAll">
+      <button class="reset-button" @click="resetAll()">
         Quiz zurücksetzen
       </button>
+      <div class="item-info" v-if="answerIsCorrect">
+        <h3>{{ question.solution }}</h3>
+        <div>
+          Ein Objekt aus der Sammlung:
+          {{ question.collection }}
+        </div>
+      </div>
+
     </aside>
   </div>
 </template>
@@ -274,8 +284,23 @@ aside {
       font-size: 1.25rem;
     }
   }
+  .item-info {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #666;
 
-  .reset-button {
+    h3 {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    div {
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+  }
+}
+.reset-button {
     margin-top: 1rem;
     padding: 0.5rem 1rem;
     background-color: #9e9e9e;
@@ -292,6 +317,5 @@ aside {
       font-size: 1rem;
     }
   }
-}
 </style>
 
