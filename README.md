@@ -1,74 +1,53 @@
-# Czech Grammar Trainer
+# 🏛️ University Collections Quiz
 
-**A lightweight web-based app to practice Czech grammar**
+An interactive online quiz built with Vue.js 3. Users explore and test their knowledge of objects from university collections through multiple-choice questions.
 
-Live demo:  
-👉 [https://culturetogoberlin.github.io/cz-grammar-trainer/](https://culturetogoberlin.github.io/cz-grammar-trainer/)
+## 🎯 Features
 
----
+- Randomized question generation from a structured JSON dataset
+- Intelligent shuffling of answer options
+- Tracks attempts, correct answers, and performance statistics
+- Simple and responsive layout ready for enhancement
 
-## 📚 Features
+## 🧰 Tech Stack
 
-Currently implemented:
-
-- Interactive quiz for Czech noun declension
-- Randomized questions with singular/plural and case variation
-- Multiple attempts per question
-- Progress tracking (correct, wrong, percentage)
-- Skips previously asked combinations
-- Option to reset quiz and score
-
----
+- [Vue.js 3](https://vuejs.org/) with `<script setup>` composition API
+- Static JSON data source for questions
+- No backend required — fully client-side
 
 ## 🚀 Getting Started
 
-### Prerequisites
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/university-collections-quiz.git
+   cd university-collections-quiz
+   ```
 
-- [Node.js](https://nodejs.org/) (version 18+ recommended)
-- [pnpm](https://pnpm.io/) or npm
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-### Installation
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
 
-```bash
-pnpm install
-```
-
-### Run locally
-
-```bash
-pnpm run dev
-```
-
-### Build & Deploy to GitHub Pages
-
-```bash
-pnpm run deploy
-```
-
-> Requires `gh-pages` to be installed and configured. See `vite.config.js` for the correct `base` path.
-
----
+4. **Build for production**
+   ```bash
+   npm run build
+   ```
 
 ## 📁 Project Structure
 
-```text
-src/
-├─ assets/                  # JSON data with declension forms
-├─ components/             # Reusable UI components (if any)
-├─ views/HomeView.vue      # Main quiz view
-├─ App.vue                 # Root component
-├─ main.js                 # App bootstrap
 ```
-
----
+src/
+├── assets/data/questions.json  # Your quiz data source
+├── views/HomeView.vue         # Main quiz component
+├── App.vue                    # Root component
+└── main.js                    # App bootstrap
+```
 
 ## 📄 License
 
-This project is licensed under the MIT License.
-
----
-
-## 👤 Author
-
-**Michael Müller**  
-[Culture to go GbR](https://culture-to-go.de)
+MIT License — see [LICENSE](LICENSE) for details.
