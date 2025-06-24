@@ -119,7 +119,15 @@ question.value = getNewQuestion()
           </button>
         </div>
 
-        <button v-if="answerIsCorrect" class="next-button" @click="nextQuestion">
+        <!-- <button v-if="answerIsCorrect" class="next-button" @click="nextQuestion">
+          Nächstes Objekt
+        </button> -->
+        <button
+          v-if="answerIsCorrect"
+          class="next-button"
+          :disabled="!answerIsCorrect"
+          @click="nextQuestion"
+        >
           Nächstes Objekt
         </button>
       </div>
@@ -146,6 +154,7 @@ question.value = getNewQuestion()
         <div>
           Ein Objekt aus der Sammlung:
           {{ question.collection }}
+          {{ question.location }}
         </div>
       </div>
 
