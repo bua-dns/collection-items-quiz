@@ -1,6 +1,9 @@
 <script setup>
 import { ref, computed } from 'vue'
 import questions from '@/assets/data/questions.json'
+import LeafletMap from '@/components/LeafletMap.vue'
+import MapView from "@/components/MapView.vue"
+
 
 // ✅ State
 const question = ref(null)
@@ -93,12 +96,26 @@ function resetAll() {
 
 // ✅ Init
 question.value = getNewQuestion()
+
+function transformCoords(locationStrg) {
+  if (!locationStrg || typeof locationStrg !== 'string') return null
+
+  const match = locationStrg.match(/([+-]?\d+(\.\d+)?),\s*([+-]?\d+(\.\d+)?)/)
+  if (!match) return null
+
+  const lat = parseFloat(match[1])
+  const long = parseFloat(match[3])
+
+  if (isNaN(lat) || isNaN(long)) return null
+
+  return { lat, long }
+}
 </script>
 
 <template>
   <div class="content-container">
     <main>
-      <h1>Quiz - Objekte aus den Berliner Universitätssammlungen</h1>
+      <h1>Objekte aus den Berliner Universitätssammlungen</h1>
 
       <div class="quiz" v-if="question">
         <img :src="`/collection-items-quiz/images/${question.image}`" alt="Sammlungsobjekt" />
@@ -141,7 +158,7 @@ question.value = getNewQuestion()
     </main>
 
     <aside>
-      <h2>Statistik</h2>
+      <h2>Dein Ergebnis</h2>
       <p><strong>{{ totalAttempts }}</strong> Aufgaben</p>
       <p><strong>{{ totalCorrect }}</strong> richtig</p>
       <p><strong>{{ totalWrong }}</strong> falsch</p>
@@ -156,6 +173,16 @@ question.value = getNewQuestion()
           {{ question.collection }}
           {{ question.location }}
         </div>
+        <!-- <LeafletMap
+          v-if="question.location"
+          :latitude="transformCoords(question.location).lat"
+          :longitude="transformCoords(question.location).long"
+        /> -->
+        <div class="map-box">
+          {{typeof transformCoords(question.location).lat}} - {{transformCoords(question.location).long}}
+          <MapView :lat="transformCoords(question.location).lat" :lng="transformCoords(question.location).long"
+            label="label" />
+        </div>
       </div>
 
     </aside>
@@ -163,13 +190,19 @@ question.value = getNewQuestion()
 </template>
 
 <style scoped lang="scss">
+@import 'leaflet/dist/leaflet.css';
+
 .content-container {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   padding: 1rem;
   min-height: 90vh;
-  background: #fff;
+  background-color: #fff;
+  background-image: url('@/assets/images/quiz.svg');
+  background-repeat: no-repeat;
+  background-position: left 3rem top 7rem;
+  background-size: 6rem auto; /* Adjust size as needed */
   border-radius: 6px;
   box-shadow: 2px 4px 6px rgba(0, 0, 0, .4);
 
@@ -182,7 +215,6 @@ question.value = getNewQuestion()
 main {
   flex: 2;
   text-align: center;
-
   h1 {
     font-size: 1.125rem;
     margin-bottom: 1.5rem;
@@ -326,5 +358,14 @@ aside {
       font-size: 1rem;
     }
   }
+  .map-box {
+  width: 36rem;
+  height: 24remx;
+  border-radius: 8px;
+  overflow: hidden;
+
+  // optional: box shadow for visual hierarchy
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
 </style>
 
