@@ -83,10 +83,13 @@
       "Villa August Ludowici in Landau 1900",
       "Evangelische Landkirche mit Pfarrhaus 1910",
       "Monument auf dem Posilipo bei Neapel 1894",
-      "Operhaus Stockholm 1887"
+      "Operhaus Stockholm 1887",
+      "S. Gregorio, Messina",
+      "Rathaus der Stadt Ellingen",
+      "Rathaus von Gent"
     ],
     "collection": "Technischen Universität Berlin, Architekturmuseum",
-    "objectGroup": "perspektivische Ansichten",
+    "objectGroup": "Gebäude",
     "creditLine": "Werk: gemeinfrei, Digitalisat: Architekturmuseum der TU Berlin"
   },
   "Bild_5.jpg": {
@@ -107,10 +110,13 @@
       "Villa August Ludowici in Landau 1900",
       "Evangelische Landkirche mit Pfarrhaus 1910",
       "Monument auf dem Posilipo bei Neapel 1894",
-      "Operhaus Stockholm 1887"
+      "Operhaus Stockholm 1887",
+      "S. Gregorio, Messina",
+      "Rathaus der Stadt Ellingen",
+      "Rathaus von Gent"
     ],
     "collection": "Technischen Universität Berlin, Architekturmuseum",
-    "objectGroup": "perspektivische Ansichten",
+    "objectGroup": "Gebäude",
     "creditLine": "Werk: gemeinfrei, Digitalisat: Architekturmuseum der TU Berlin"
   },
   "Bild_6.jpg": {
@@ -131,10 +137,13 @@
       "Villa August Ludowici in Landau 1900",
       "Evangelische Landkirche mit Pfarrhaus 1910",
       "Monument auf dem Posilipo bei Neapel 1894",
-      "Operhaus Stockholm 1887"
+      "Operhaus Stockholm 1887",
+      "S. Gregorio, Messina",
+      "Rathaus der Stadt Ellingen",
+      "Rathaus von Gent"
     ],
     "collection": "Technischen Universität Berlin, Architekturmuseum",
-    "objectGroup": "perspektivische Ansichten",
+    "objectGroup": "Gebäude",
     "creditLine": "Werk: gemeinfrei, Digitalisat: Architekturmuseum der TU Berlin"
   },
   "Bild_7.jpg": {
@@ -155,10 +164,13 @@
       "Villa August Ludowici in Landau 1900",
       "Evangelische Landkirche mit Pfarrhaus 1910",
       "Monument auf dem Posilipo bei Neapel 1894",
-      "Operhaus Stockholm 1887"
+      "Operhaus Stockholm 1887",
+      "S. Gregorio, Messina",
+      "Rathaus der Stadt Ellingen",
+      "Rathaus von Gent"
     ],
     "collection": "Technischen Universität Berlin, Architekturmuseum",
-    "objectGroup": "perspektivische Ansichten",
+    "objectGroup": "Gebäude",
     "creditLine": "Werk: gemeinfrei, Digitalisat: Architekturmuseum der TU Berlin"
   },
   "Bild_8.jpg": {
@@ -179,10 +191,13 @@
       "Villa August Ludowici in Landau 1900",
       "Evangelische Landkirche mit Pfarrhaus 1910",
       "Monument auf dem Posilipo bei Neapel 1894",
-      "Operhaus Stockholm 1887"
+      "Operhaus Stockholm 1887",
+      "S. Gregorio, Messina",
+      "Rathaus der Stadt Ellingen",
+      "Rathaus von Gent"
     ],
     "collection": "Technischen Universität Berlin, Architekturmuseum",
-    "objectGroup": "perspektivische Ansichten",
+    "objectGroup": "Gebäude",
     "creditLine": "Werk: gemeinfrei, Digitalisat: Architekturmuseum der TU Berlin"
   },
   "Bild_9.jpg": {
@@ -276,5 +291,398 @@
     "collection": "Freie Universität Berlin, Theaterhistorische Sammlungen des Instituts für Theaterwissenschaft",
     "objectGroup": "Bühnenbildentwürfe",
     "creditLine": "Werk: Traugott Müller, Rechtewahrnehmung: Institut für Theaterwissenschaft der FU Berlin"
+  },
+  "Bild_M1.jpg": {
+    "image": "Bild_M1.jpg",
+    "solution": "Cerussit (Weißbleierz)",
+    "options": [
+      "gediegenes Kupfer",
+      "Anglesit",
+      "Aragonit",
+      "Azurit",
+      "Kupferkies",
+      "Buntkupfererz",
+      "Kalkspat",
+      "Carneit",
+      "Mimetesit",
+      "Descloizit",
+      "Dioptas"
+    ],
+    "collection": "Technische Universität Berlin, Mineralogische Sammlungen",
+    "objectGroup": "Minerale",
+    "creditLine": ""
+  },
+  "Bild_M2.jpg": {
+    "image": "Bild_M2.jpg",
+    "solution": "gediegenes Kupfer",
+    "options": [
+      "Cerussit (Weißbleierz)",
+      "Anglesit",
+      "Aragonit",
+      "Azurit",
+      "Kupferkies",
+      "Buntkupfererz",
+      "Kalkspat",
+      "Carneit",
+      "Mimetesit",
+      "Descloizit",
+      "Dioptas"
+    ],
+    "collection": "Technische Universität Berlin, Mineralogische Sammlungen",
+    "objectGroup": "Minerale",
+    "creditLine": ""
+  },
+  "Bild_M3.jpg": {
+    "image": "Bild_M3.jpg",
+    "solution": "Anglesit",
+    "options": [
+      "Cerussit (Weißbleierz)",
+      "gediegenes Kupfer",
+      "Aragonit",
+      "Azurit",
+      "Kupferkies",
+      "Buntkupfererz",
+      "Kalkspat",
+      "Carneit",
+      "Mimetesit",
+      "Descloizit",
+      "Dioptas"
+    ],
+    "collection": "Technische Universität Berlin, Mineralogische Sammlungen",
+    "objectGroup": "Minerale",
+    "creditLine": ""
+  },
+  "Bild_M4.jpg": {
+    "image": "Bild_M4.jpg",
+    "solution": "Aragonit",
+    "options": [
+      "Cerussit (Weißbleierz)",
+      "gediegenes Kupfer",
+      "Anglesit",
+      "Azurit",
+      "Kupferkies",
+      "Buntkupfererz",
+      "Kalkspat",
+      "Carneit",
+      "Mimetesit",
+      "Descloizit",
+      "Dioptas"
+    ],
+    "collection": "Technische Universität Berlin, Mineralogische Sammlungen",
+    "objectGroup": "Minerale",
+    "creditLine": ""
+  },
+  "Bild_M5.jpg": {
+    "image": "Bild_M5.jpg",
+    "solution": "Azurit",
+    "options": [
+      "Cerussit (Weißbleierz)",
+      "gediegenes Kupfer",
+      "Anglesit",
+      "Aragonit",
+      "Kupferkies",
+      "Buntkupfererz",
+      "Kalkspat",
+      "Carneit",
+      "Mimetesit",
+      "Descloizit",
+      "Dioptas"
+    ],
+    "collection": "Technische Universität Berlin, Mineralogische Sammlungen",
+    "objectGroup": "Minerale",
+    "creditLine": ""
+  },
+  "Bild_M6.jpg": {
+    "image": "Bild_M6.jpg",
+    "solution": "Kupferkies",
+    "options": [
+      "Cerussit (Weißbleierz)",
+      "gediegenes Kupfer",
+      "Anglesit",
+      "Aragonit",
+      "Azurit",
+      "Buntkupfererz",
+      "Kalkspat",
+      "Carneit",
+      "Mimetesit",
+      "Descloizit",
+      "Dioptas"
+    ],
+    "collection": "Technische Universität Berlin, Mineralogische Sammlungen",
+    "objectGroup": "Minerale",
+    "creditLine": ""
+  },
+  "Bild_M7.jpg": {
+    "image": "Bild_M7.jpg",
+    "solution": "Buntkupfererz",
+    "options": [
+      "Cerussit (Weißbleierz)",
+      "gediegenes Kupfer",
+      "Anglesit",
+      "Aragonit",
+      "Azurit",
+      "Kupferkies",
+      "Kalkspat",
+      "Carneit",
+      "Mimetesit",
+      "Descloizit",
+      "Dioptas"
+    ],
+    "collection": "Technische Universität Berlin, Mineralogische Sammlungen",
+    "objectGroup": "Minerale",
+    "creditLine": ""
+  },
+  "Bild_M8.jpg": {
+    "image": "Bild_M8.jpg",
+    "solution": "Kalkspat",
+    "options": [
+      "Cerussit (Weißbleierz)",
+      "gediegenes Kupfer",
+      "Anglesit",
+      "Aragonit",
+      "Azurit",
+      "Kupferkies",
+      "Buntkupfererz",
+      "Carneit",
+      "Mimetesit",
+      "Descloizit",
+      "Dioptas"
+    ],
+    "collection": "Technische Universität Berlin, Mineralogische Sammlungen",
+    "objectGroup": "Minerale",
+    "creditLine": ""
+  },
+  "Bild_M9.jpg": {
+    "image": "Bild_M9.jpg",
+    "solution": "Descloizit",
+    "options": [
+      "Cerussit (Weißbleierz)",
+      "gediegenes Kupfer",
+      "Anglesit",
+      "Aragonit",
+      "Azurit",
+      "Kupferkies",
+      "Buntkupfererz",
+      "Kalkspat",
+      "Carneit",
+      "Mimetesit",
+      "Dioptas"
+    ],
+    "collection": "Technische Universität Berlin, Mineralogische Sammlungen",
+    "objectGroup": "Minerale",
+    "creditLine": ""
+  },
+  "Bild_M10.jpg": {
+    "image": "Bild_M10.jpg",
+    "solution": "Dioptas",
+    "options": [
+      "Cerussit (Weißbleierz)",
+      "gediegenes Kupfer",
+      "Anglesit",
+      "Aragonit",
+      "Azurit",
+      "Kupferkies",
+      "Buntkupfererz",
+      "Kalkspat",
+      "Carneit",
+      "Mimetesit",
+      "Descloizit"
+    ],
+    "collection": "Technische Universität Berlin, Mineralogische Sammlungen",
+    "objectGroup": "Minerale",
+    "creditLine": ""
+  },
+  "Bild_M11.jpg": {
+    "image": "Bild_M11.jpg",
+    "solution": "S. Gregorio, Messina",
+    "options": [
+      "Berliner Dom 1868, Ansicht vom Lustgarten aus",
+      "Herrenhaus in Lodz 1909, Ansicht der Parkfassade",
+      "Landhaus 1907",
+      "Bebauung der Kaiser-Wilhelm-Straße 1885",
+      "Rathaus Hannover 1897, Ansicht vom Maschsee",
+      "Ständehaus Düsseldorf 1875",
+      "Dienstwohnung für den Regierungspräsidenten von Danzig 1883",
+      "Wiederaufbauplanung des Gendarmenmarkts 1945",
+      "Kindererholungsheim im Schwarzwald 1936",
+      "Entwurf zu einem Landratswohnhaus 1912",
+      "Dom von Minden 1946-1957",
+      "Landratsamt (Kreishaus) von Thorn, 1900",
+      "Villa August Ludowici in Landau 1900",
+      "Evangelische Landkirche mit Pfarrhaus 1910",
+      "Monument auf dem Posilipo bei Neapel 1894",
+      "Operhaus Stockholm 1887",
+      "Rathaus der Stadt Ellingen",
+      "Rathaus von Gent"
+    ],
+    "collection": "Humboldt-Universität zu Berlin, Mediathek des Instituts für Kunst- und Bildgeschichte",
+    "objectGroup": "Gebäude",
+    "creditLine": ""
+  },
+  "Bild_M12.jpg": {
+    "image": "Bild_M12.jpg",
+    "solution": "Rathaus der Stadt Ellingen",
+    "options": [
+      "Berliner Dom 1868, Ansicht vom Lustgarten aus",
+      "Herrenhaus in Lodz 1909, Ansicht der Parkfassade",
+      "Landhaus 1907",
+      "Bebauung der Kaiser-Wilhelm-Straße 1885",
+      "Rathaus Hannover 1897, Ansicht vom Maschsee",
+      "Ständehaus Düsseldorf 1875",
+      "Dienstwohnung für den Regierungspräsidenten von Danzig 1883",
+      "Wiederaufbauplanung des Gendarmenmarkts 1945",
+      "Kindererholungsheim im Schwarzwald 1936",
+      "Entwurf zu einem Landratswohnhaus 1912",
+      "Dom von Minden 1946-1957",
+      "Landratsamt (Kreishaus) von Thorn, 1900",
+      "Villa August Ludowici in Landau 1900",
+      "Evangelische Landkirche mit Pfarrhaus 1910",
+      "Monument auf dem Posilipo bei Neapel 1894",
+      "Operhaus Stockholm 1887",
+      "S. Gregorio, Messina",
+      "Rathaus von Gent"
+    ],
+    "collection": "Humboldt-Universität zu Berlin, Mediathek des Instituts für Kunst- und Bildgeschichte",
+    "objectGroup": "Gebäude",
+    "creditLine": ""
+  },
+  "Bild_M13.jpg": {
+    "image": "Bild_M13.jpg",
+    "solution": "Rathaus von Gent",
+    "options": [
+      "Berliner Dom 1868, Ansicht vom Lustgarten aus",
+      "Herrenhaus in Lodz 1909, Ansicht der Parkfassade",
+      "Landhaus 1907",
+      "Bebauung der Kaiser-Wilhelm-Straße 1885",
+      "Rathaus Hannover 1897, Ansicht vom Maschsee",
+      "Ständehaus Düsseldorf 1875",
+      "Dienstwohnung für den Regierungspräsidenten von Danzig 1883",
+      "Wiederaufbauplanung des Gendarmenmarkts 1945",
+      "Kindererholungsheim im Schwarzwald 1936",
+      "Entwurf zu einem Landratswohnhaus 1912",
+      "Dom von Minden 1946-1957",
+      "Landratsamt (Kreishaus) von Thorn, 1900",
+      "Villa August Ludowici in Landau 1900",
+      "Evangelische Landkirche mit Pfarrhaus 1910",
+      "Monument auf dem Posilipo bei Neapel 1894",
+      "Operhaus Stockholm 1887",
+      "S. Gregorio, Messina",
+      "Rathaus der Stadt Ellingen"
+    ],
+    "collection": "Humboldt-Universität zu Berlin, Mediathek des Instituts für Kunst- und Bildgeschichte",
+    "objectGroup": "Gebäude",
+    "creditLine": ""
+  },
+  "Bild_M14.jpg": {
+    "image": "Bild_M14.jpg",
+    "solution": "Voltmeter",
+    "options": [
+      "Ampermeter",
+      "Rostocker Kammer",
+      "Elektroenzephalograph",
+      "Biofeedback-Psychometer",
+      "Galvanometer",
+      "Goniometer",
+      "Kontaminations-Messgerät"
+    ],
+    "collection": "Charité - Universitätsmedizin Berlin, Physiologische Sammlung",
+    "objectGroup": "Apparate",
+    "creditLine": ""
+  },
+  "Bild_M15.jpg": {
+    "image": "Bild_M15.jpg",
+    "solution": "Rostocker Kammer",
+    "options": [
+      "Voltmeter",
+      "Ampermeter",
+      "Elektroenzephalograph",
+      "Biofeedback-Psychometer",
+      "Galvanometer",
+      "Goniometer",
+      "Kontaminations-Messgerät"
+    ],
+    "collection": "Charité - Universitätsmedizin Berlin, Physiologische Sammlung",
+    "objectGroup": "Apparate",
+    "creditLine": ""
+  },
+  "Bild_M16.jpg": {
+    "image": "Bild_M16.jpg",
+    "solution": "Elektroenzephalograph",
+    "options": [
+      "Voltmeter",
+      "Ampermeter",
+      "Rostocker Kammer",
+      "Biofeedback-Psychometer",
+      "Galvanometer",
+      "Goniometer",
+      "Kontaminations-Messgerät"
+    ],
+    "collection": "Charité - Universitätsmedizin Berlin, Physiologische Sammlung",
+    "objectGroup": "Apparate",
+    "creditLine": ""
+  },
+  "Bild_M17.jpg": {
+    "image": "Bild_M17.jpg",
+    "solution": "Biofeedback-Psychometer",
+    "options": [
+      "Voltmeter",
+      "Ampermeter",
+      "Rostocker Kammer",
+      "Elektroenzephalograph",
+      "Galvanometer",
+      "Goniometer",
+      "Kontaminations-Messgerät"
+    ],
+    "collection": "Humboldt-Universität zu Berlin, Medienarchäologischer Fundus",
+    "objectGroup": "Apparate",
+    "creditLine": ""
+  },
+  "Bild_M18.jpg": {
+    "image": "Bild_M18.jpg",
+    "solution": "Galvanometer",
+    "options": [
+      "Voltmeter",
+      "Ampermeter",
+      "Rostocker Kammer",
+      "Elektroenzephalograph",
+      "Biofeedback-Psychometer",
+      "Goniometer",
+      "Kontaminations-Messgerät"
+    ],
+    "collection": "Humboldt-Universität zu Berlin, Medienarchäologischer Fundus",
+    "objectGroup": "Apparate",
+    "creditLine": ""
+  },
+  "Bild_M19.jpg": {
+    "image": "Bild_M19.jpg",
+    "solution": "Goniometer",
+    "options": [
+      "Voltmeter",
+      "Ampermeter",
+      "Rostocker Kammer",
+      "Elektroenzephalograph",
+      "Biofeedback-Psychometer",
+      "Galvanometer",
+      "Kontaminations-Messgerät"
+    ],
+    "collection": "Humboldt-Universität zu Berlin, Medienarchäologischer Fundus",
+    "objectGroup": "Apparate",
+    "creditLine": ""
+  },
+  "Bild_M20.jpg": {
+    "image": "Bild_M20.jpg",
+    "solution": "Kontaminations-Messgerät",
+    "options": [
+      "Voltmeter",
+      "Ampermeter",
+      "Rostocker Kammer",
+      "Elektroenzephalograph",
+      "Biofeedback-Psychometer",
+      "Galvanometer",
+      "Goniometer"
+    ],
+    "collection": "Humboldt-Universität zu Berlin, Medienarchäologischer Fundus",
+    "objectGroup": "Apparate",
+    "creditLine": ""
   }
 }
