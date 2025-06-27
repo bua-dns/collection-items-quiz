@@ -2,6 +2,8 @@
 
 An interactive online quiz built with Vue.js 3. Users explore and test their knowledge of objects from university collections through multiple-choice questions.
 
+A demo version is accessible at [https://bua-dns.github.io/collection-items-quiz/](https://bua-dns.github.io/collection-items-quiz/).
+
 ## 🎯 Features
 
 - Randomized question generation from a structured JSON dataset
