@@ -169,19 +169,8 @@ function transformCoords(locationStrg) {
       <div class="item-info" v-if="answerIsCorrect">
         <h3>{{ question.solution }}</h3>
         <div>
-          Ein Objekt aus der Sammlung:
+          Ein Objekt aus der Sammlung:<br />
           {{ question.collection }}
-          {{ question.location }}
-        </div>
-        <!-- <LeafletMap
-          v-if="question.location"
-          :latitude="transformCoords(question.location).lat"
-          :longitude="transformCoords(question.location).long"
-        /> -->
-        <div class="map-box">
-          {{typeof transformCoords(question.location).lat}} - {{transformCoords(question.location).long}}
-          <MapView :lat="transformCoords(question.location).lat" :lng="transformCoords(question.location).long"
-            label="label" />
         </div>
       </div>
 
@@ -337,7 +326,6 @@ aside {
 
     div {
       margin-top: 0.5rem;
-      font-style: italic;
     }
   }
 }
