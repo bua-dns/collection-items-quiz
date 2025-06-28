@@ -145,7 +145,7 @@ function transformCoords(locationStrg) {
           Nächstes Objekt
         </button> -->
         <button
-          v-if="answerIsCorrect"
+          v-if="answerIsCorrect && totalAttempts < Object.entries(questions).length"
           class="next-button"
           :disabled="!answerIsCorrect"
           @click="nextQuestion"
@@ -154,7 +154,7 @@ function transformCoords(locationStrg) {
         </button>
       </div>
 
-      <div v-else class="quiz">
+      <div v-if="!question" class="quiz">
         <p>✅ Du hast alle Fragen durchgespielt!</p>
         <button class="reset-button" @click="resetAll()">
           Quiz zurücksetzen
@@ -164,7 +164,7 @@ function transformCoords(locationStrg) {
 
     <aside>
       <h2>Dein Ergebnis</h2>
-      <p><strong>{{ totalAttempts }}</strong> Aufgaben</p>
+      <p><strong>{{ totalAttempts }} / {{ Object.entries(questions).length }}</strong> Aufgaben</p>
       <p><strong>{{ totalCorrect }}</strong> richtig</p>
       <p><strong>{{ totalWrong }}</strong> falsch</p>
       <p><strong>{{ successRate }}%</strong> korrekt</p>
