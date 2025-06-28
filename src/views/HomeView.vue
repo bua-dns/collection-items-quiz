@@ -22,6 +22,7 @@ const successRate = computed(() =>
 // ✅ Option generation
 function generateOptions(solution, pool) {
   const options = new Set([solution])
+
   while (options.size < 3) {
     const random = pool[Math.floor(Math.random() * pool.length)]
     options.add(random)
@@ -31,14 +32,18 @@ function generateOptions(solution, pool) {
 
 // ✅ Question generation
 function getNewQuestion() {
+  // console.log('unfiltered questions', Object.entries(questions))
   const allEntries = Object.entries(questions)
-    .filter(([key]) => !askedQuestions.value.has(key))
-
+  .filter(([key]) => !askedQuestions.value.has(key))
+  // console.log('all entries', allEntries)
+  
   if (allEntries.length === 0) return null
 
   const [key, picked] = allEntries[Math.floor(Math.random() * allEntries.length)]
+  // console.log('picked question key', key)
+  // console.log('picked question', picked)
   picked.selectedOptions = generateOptions(picked.solution, picked.options)
-  delete picked.options
+  // delete picked.options
   picked._key = key
   return picked
 }
