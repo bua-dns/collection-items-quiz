@@ -1,9 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue'
 import questions from '@/assets/data/questions.json'
-import LeafletMap from '@/components/LeafletMap.vue'
-import MapView from "@/components/MapView.vue"
-
 
 // ✅ State
 const question = ref(null)
@@ -18,6 +15,25 @@ const totalWrong = ref(0)
 const successRate = computed(() =>
   totalAttempts.value === 0 ? 0 : Math.round((totalCorrect.value / totalAttempts.value) * 100)
 )
+
+// Feedback for the user
+function getSuccessFeedback(successRate) {
+  console.log('successRate', successRate)
+  console.log('typeof successRate', typeof successRate)
+  // return `${successRate}% der Fragen richtig beantwortet. Das sind aber auch Objekte, die man nicht jeden Tag sieht! Willst du es noch einmal versuchen?`
+  if (successRate <= 25) {
+    return `${successRate}% der Fragen richtig beantwortet. Das sind aber auch Objekte, die man nicht jeden Tag sieht! Willst du es noch einmal versuchen?`
+  } 
+  if (successRate.value >= 25 && successRate < 60) {
+    return `${successRate}% der Fragen richtig beantwortet. Beachtlich! Die Objekte der Berliner Universitätssammlungen sind nicht nur für WissenschaftlerInnen interessant, sondern auch für alle, die sich für Geschichte und Kultur interessieren.`
+  }
+  if (successRate >= 60 && successRate < 90) {
+    return `${successRate}% der Fragen richtig beantwortet. Sehr gut! Die Berliner Universitätssammlungen haben eine wichtige Funktion in Forschung und Lehre. Das Digitale Netzwerk Sammlungen hilft, diese Objekte für alle zugänglich zu machen.`
+  }
+  if (successRate >= 90) {
+    return `${successRate}% der Fragen richtig beantwortet. Fantastisch! Du hast ein gutes Auge für die Objekte der Berliner Universitätssammlungen und kennst Dich hervorragend aus!`
+  }
+}
 
 // ✅ Option generation
 function generateOptions(solution, pool) {
@@ -176,6 +192,12 @@ function transformCoords(locationStrg) {
         <div>
           Ein Objekt aus der Sammlung:<br />
           {{ question.collection }}
+        </div>
+      </div>
+      <div class="item-info" v-if="totalAttempts === Object.entries(questions).length">
+        <h3>Dein Feedback</h3>
+        <div>
+          {{ getSuccessFeedback(successRate) }}
         </div>
       </div>
 
